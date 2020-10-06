@@ -1,11 +1,20 @@
 const shapes = document.getElementById('shapes')
 const calcInputs = document.getElementById('calc-inputs')
+const inputs = document.getElementsByClassName('inputs')
+const submit = document.getElementById('submit')
+const result = document.getElementById('result')
+let selected = 'cube'
+let sideInput = document.getElementById('side-length')
 
 shapes.onclick = function(e) {
-    let selected =  e.target.value
+    selected =  e.target.value
 
     setInputs(selected)
-}
+};
+
+submit.onclick = function() {
+    result.innerText = parseInt(calculate(selected))
+};
 
 function setInputs(shape) {
     //clears calcInputs
@@ -18,9 +27,10 @@ function setInputs(shape) {
             let sideli = document.createElement('li')
             let sideLabel = document.createElement('label')
             sideLabel.innerText = 'Length of side:'
-            let sideInput = document.createElement('input')
+            sideInput = document.createElement('input')
             sideInput.type = 'number'
             sideInput.id = 'side-length'
+            sideInput.className = 'inputs'
 
             calcInputs.appendChild(sideli)
             sideli.appendChild(sideLabel)
@@ -33,20 +43,22 @@ function setInputs(shape) {
             let cylRadiusInput = document.createElement('input')
             cylRadiusInput.type = 'number'
             cylRadiusInput.id = 'cyl-radius'
+            cylRadiusInput.className = 'inputs'
 
-            let heightli = document.createElement('li')
-            let heightLabel = document.createElement('label')
-            heightLabel.innerText = 'Height:'
-            let heightInput = document.createElement('input')
-            heightInput.type = 'number'
-            heightInput.id = 'cyl-height'
+            let cylHeightli = document.createElement('li')
+            let cylHeightLabel = document.createElement('label')
+            cylHeightLabel.innerText = 'Height:'
+            let cylHeightInput = document.createElement('input')
+            cylHeightInput.type = 'number'
+            cylHeightInput.id = 'cyl-height'
+            cylHeightInput.className = 'inputs'
 
             calcInputs.appendChild(cylRadiusli)
             cylRadiusli.appendChild(cylRadiusLabel)
             cylRadiusli.appendChild(cylRadiusInput)
-            calcInputs.appendChild(heightli)
-            heightli.appendChild(heightLabel)
-            heightli.appendChild(heightInput)
+            calcInputs.appendChild(cylHeightli)
+            cylHeightli.appendChild(cylHeightLabel)
+            cylHeightli.appendChild(cylHeightInput)
             break;
         case 'sphere':
             let sphRadiusli = document.createElement('li')
@@ -55,10 +67,24 @@ function setInputs(shape) {
             let sphRadiusInput = document.createElement('input')
             sphRadiusInput.type = 'number'
             sphRadiusInput.id = 'sph-radius'
+            sphRadiusInput.className = 'inputs'
 
             calcInputs.appendChild(sphRadiusli)
             sphRadiusli.appendChild(sphRadiusLabel)
             sphRadiusli.appendChild(sphRadiusInput)
             break;
+    }
+}
+
+function calculate(selected) {
+    switch (selected) {
+        case 'cube':
+            return  Math.pow(sideInput.value, 3)
+        case 'cylinder':
+            cylRadiusInput = document.getElementById('cyl-radius')
+            cylHeightInput = document.getElementById('cyl-height')
+            return Math.PI * Math.pow(cylRadiusInput.value, 2) * cylHeightInput
+        case 'sphere':
+            return (4/3) * Math.PI * Math.pow(sphRadiusInput.value, 3)
     }
 }
