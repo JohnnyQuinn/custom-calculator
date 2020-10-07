@@ -14,6 +14,7 @@ shapes.onclick = function(e) {
 
 submit.onclick = function() {
     result.innerText = parseInt(calculate(selected))
+    console.log(selected)
 };
 
 function setInputs(shape) {
@@ -21,6 +22,7 @@ function setInputs(shape) {
     while (calcInputs.firstChild) {
         calcInputs.removeChild(calcInputs.lastChild)
     }
+    //create DOM elements for each calculation
     switch (shape) {
         case 'cube':
             //create cube side lengths inputs
@@ -44,6 +46,7 @@ function setInputs(shape) {
             cylRadiusInput.type = 'number'
             cylRadiusInput.id = 'cyl-radius'
             cylRadiusInput.className = 'inputs'
+            console.log(cylRadiusInput)
 
             let cylHeightli = document.createElement('li')
             let cylHeightLabel = document.createElement('label')
@@ -81,10 +84,11 @@ function calculate(selected) {
         case 'cube':
             return  Math.pow(sideInput.value, 3)
         case 'cylinder':
-            cylRadiusInput = document.getElementById('cyl-radius')
-            cylHeightInput = document.getElementById('cyl-height')
-            return Math.PI * Math.pow(cylRadiusInput.value, 2) * cylHeightInput
+            const cylRadius = document.querySelector('#cyl-radius')
+            const cylHeight = document.querySelector('#cyl-height')
+            return Math.PI * Math.pow(cylRadius.value, 2) * cylHeight.value
         case 'sphere':
-            return (4/3) * Math.PI * Math.pow(sphRadiusInput.value, 3)
+            const sphRadius = document.querySelector('#sph-radius')
+            return (4/3) * Math.PI * Math.pow(sphRadius.value, 3)
     }
 }
