@@ -24,7 +24,7 @@ function setInputs(shape) {
     while (calcInputs.firstChild) {
         calcInputs.removeChild(calcInputs.lastChild)
     }
-    result.innerText = ''
+    result.innerText = '0'
     //create DOM elements for each calculation
     switch (shape) {
         case 'cube':

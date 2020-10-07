@@ -6,24 +6,32 @@
     <body>
         <h1>Volume Calculator</h1>
 
-        <label for="shape">Choose a shape:</label>
-        <select name="shapes" id="shapes" autocomplete="off">
-            <option value="cube" selected>Cube</option>
-            <option value="cylinder">Cylinder</option>
-            <option value="sphere">Sphere</option>
-        </select>
-
-        <ul id='calc-inputs'>
-            <!--Inputs for calculations go here-->
-            <!--Default calculation is cube-->
-            <li>
-                <label for="">Length of side:</label>
-                <input type="number" id='side-length' class='inputs'>
-            </li>
-        </ul>
-        <input type="button" value='Submit' id='submit'>
-        <p>Volume:</p>
-        <p id='result'></p>
+        <div>
+            <section>
+                <h2>Choose a shape:</h2>
+                <select name="shapes" id="shapes" autocomplete="off">
+                    <option value="cube" selected>Cube</option>
+                    <option value="cylinder">Cylinder</option>
+                    <option value="sphere">Sphere</option>
+                </select>
+            </section>
+    
+            <section>
+                <ul id='calc-inputs'>
+                    <!--Inputs for calculations go here-->
+                    <!--Default calculation is cube-->
+                    <li>
+                        <label for="">Length of side:</label>
+                        <input type="number" id='side-length' class='inputs'>
+                    </li>
+                </ul>
+                <input type="button" value='Submit' id='submit'>
+            </section>
+            <section>
+                <p>Volume:</p>
+                <p id='result'>0</p>
+            </section>
+        </div>
         <script type='module' src='./script.js'></script>
     </body>
 </html>
