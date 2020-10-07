@@ -3,18 +3,20 @@ const calcInputs = document.getElementById('calc-inputs')
 const inputs = document.getElementsByClassName('inputs')
 const submit = document.getElementById('submit')
 const result = document.getElementById('result')
+//default shape
 let selected = 'cube'
 let sideInput = document.getElementById('side-length')
 
+//creates DOM elements based on selected shape
 shapes.onclick = function(e) {
     selected =  e.target.value
 
     setInputs(selected)
 };
 
+//calls calculate when user hits submit
 submit.onclick = function() {
     result.innerText = parseInt(calculate(selected))
-    console.log(selected)
 };
 
 function setInputs(shape) {
@@ -22,10 +24,10 @@ function setInputs(shape) {
     while (calcInputs.firstChild) {
         calcInputs.removeChild(calcInputs.lastChild)
     }
+    result.innerText = ''
     //create DOM elements for each calculation
     switch (shape) {
         case 'cube':
-            //create cube side lengths inputs
             let sideli = document.createElement('li')
             let sideLabel = document.createElement('label')
             sideLabel.innerText = 'Length of side:'
@@ -46,7 +48,6 @@ function setInputs(shape) {
             cylRadiusInput.type = 'number'
             cylRadiusInput.id = 'cyl-radius'
             cylRadiusInput.className = 'inputs'
-            console.log(cylRadiusInput)
 
             let cylHeightli = document.createElement('li')
             let cylHeightLabel = document.createElement('label')
@@ -79,6 +80,7 @@ function setInputs(shape) {
     }
 }
 
+//calculated using inputs based on selected shape
 function calculate(selected) {
     switch (selected) {
         case 'cube':
